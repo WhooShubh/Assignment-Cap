@@ -1,0 +1,42 @@
+package com.capg.payment.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.capg.payment.entity.Payment;
+import com.capg.payment.service.PaymentService;
+
+@RestController
+@RequestMapping("/pay")
+public class PaymentController {
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @PostMapping("/payments")
+    public Payment savePayment(@RequestBody Payment payment) {
+        return paymentService.savePayment(payment);
+    }
+
+    @GetMapping("/payments/{id}")
+    public Payment getPayment(@PathVariable int id) {
+        return paymentService.getPayment(id);
+    }
+    
+    @GetMapping
+    public ResponseEntity<String> takeDataFromUser() {
+    	String url="http://localhost:8080/use/data";
+    	RestTemplate temp=new RestTemplate();
+    	ResponseEntity<String> resp=temp.exchange(url, HttpMethod.GET, null, String.class);
+    	
+    	return resp;
+    }
+}

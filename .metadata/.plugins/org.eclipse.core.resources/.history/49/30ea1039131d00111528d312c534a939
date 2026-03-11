@@ -1,0 +1,35 @@
+package com.capg.user.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capg.user.entity.Users;
+import com.capg.user.service.UsersService;
+
+
+
+@RestController
+@RequestMapping("/use")
+public class UsersController {
+
+    @Autowired
+    private UsersService userService;
+
+    // CREATE USER
+    @PostMapping("/users")
+    public Users saveUser(@RequestBody Users user) {
+        return userService.saveUser(user);
+    }
+
+    // FIND USER
+    @GetMapping("/users/{id}")
+    public Users getUser(@PathVariable int id) {
+    	System.err.print("HHHHHHEEEEEELLLLLLLLLLLLLLOOOOOOO");
+        return userService.getUser(id);
+    }
+}

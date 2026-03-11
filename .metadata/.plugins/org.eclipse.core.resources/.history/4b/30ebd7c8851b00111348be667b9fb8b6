@@ -1,0 +1,22 @@
+package com.capg.user.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    // CREATE USER
+    @PostMapping("/users")
+    public User1 saveUser(@RequestBody User1 user) {
+        return userService.saveUser(user);
+    }
+
+    // FIND USER
+    @GetMapping("/users/{id}")
+    public User1 getUser(@PathVariable int id) {
+        return userService.getUser(id);
+    }
+}

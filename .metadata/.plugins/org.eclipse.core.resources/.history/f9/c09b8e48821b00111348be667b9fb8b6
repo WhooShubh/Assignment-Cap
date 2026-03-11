@@ -1,0 +1,5 @@
+package com.capg.user.entity;
+
+public class User {
+
+}

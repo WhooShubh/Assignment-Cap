@@ -1,0 +1,8 @@
+spring.application.name=service-registory
+
+
+server.port=8761
+
+#to remove self registration of eureka server
+eureka.client.fetch-registry=false
+eureka.client.register-with-eureka=false
