@@ -1,0 +1,25 @@
+services:
+  student:
+    build: .
+    image: student-image
+    ports:
+     - "9090:9090"
+    depends_on:
+     - postgres
+    volumes:
+     - names-volume:/app
+ 
+  postgres:
+    image: postgres:17
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: studentdb
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+     - "5432:5432"
+    volumes:
+     - postgres-data:/var/lib/postgresql/data
+volumes:
+  names-volume:
+  postgres-data:

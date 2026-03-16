@@ -1,0 +1,6 @@
+services:
+  test:
+    build: .
+    image: compose_test
+    ports:
+      - 8080:8080  
